@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog</title>
+  <!-- ^^^^^^^^^^^^^^^^^^^^jQuery^^^^^^^^^^^^^^^^^^^^ -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  <!-- -jQuery^^^^^^^^^^^^^^^^^^^^- -->
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- ^^^^^^^^^^^^^^^^^^^プラグイン^^^^^^^^^^^^^^^^^^^^ -->
+  <script type="text/javascript" src="jquery.inview.js"></script>
+  <!-- プラグイン^^^^^^^^^^^^^^^^^^^^- -->
+
+  <!-- ^^^^^^^^^^^^^^^^^^^^-Materialize^^^^^^^^^^^^^^^^^^^^ -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- -Materialize^^^^^^^^^^^^^^^^^^^^-->
+</head>
+
+<body>
+  <nav class="purple accent-3">
+    <div class="nav-wrapper">
+      <p href="/" class="brand-logo logogo">Blog<i class="material-icons">chat</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if user_signed_in? %>
+          <li><%= link_to '投稿する', new_tweet_path %></li>
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to '新規登録', new_user_registration_path %></li>
+          <li><%= link_to 'ログイン', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+
+<%= yield %>
+
+</body>
+</html>
